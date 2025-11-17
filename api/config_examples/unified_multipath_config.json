@@ -1,0 +1,36 @@
+{
+    "type": "multipath",
+    "retrievers": [
+        {
+            "type": "dense",
+            "index_config": {
+                "type": "faiss",
+                "index_path": "./data/unified_faiss_index",
+                "metric": "cosine",
+                "index_type": "flat",
+                "normalize_L2": true,
+                "embedding_config": {
+                    "type": "qwen_embedding",
+                    "model_name": "Qwen/Qwen3-Embedding-0.6B",
+                    "device": "${DEVICE}",
+                    "use_china_mirror": true,
+                    "cache_folder": "./models/Qwen"
+                }
+            }
+        },
+        {
+            "type": "tantivy_bm25",
+            "index_config": {
+                "type": "bm25_builder",
+                "index_path": "./data/unified_bm25_index"
+            }
+        }
+    ],
+    "fusion_method": "rrf",
+    "rrf_k": 60,
+    "weights": null,
+    "search_kwargs": {
+        "k": 5,
+        "with_score": true
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "type": "account",
+    "user_storage_config": {
+        "type": "user_storage",
+        "relational_db_config": {
+            "type": "postgresql",
+            "host": "${POSTGRES_HOST}",
+            "port": "${POSTGRES_PORT}",
+            "database": "${POSTGRES_DB}",
+            "user": "${POSTGRES_USER}",
+            "password": "${POSTGRES_PASSWORD}"
+        }
+    }
+}

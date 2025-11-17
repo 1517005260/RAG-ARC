@@ -1,1 +1,93 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "RAG-ARC"
+version = "0.1.0"
+description = "Retrieval-Augmented Generation Architecture"
+requires-python = ">=3.11"
+dependencies = [
+    # Core framework
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "fastmcp>=0.1.0",
+    "pydantic>=2.0.0",
+    "dill",
+    "python-dotenv",
+
+    # Vector database
+    "faiss-gpu-cu12; platform_system == 'Linux' and platform_machine == 'x86_64'",
+    "faiss-cpu; platform_system != 'Linux' or platform_machine != 'x86_64'",
+
+    # Document processing
+    "pillow>=11.3.0",
+    "pymupdf>=1.24.10",
+    "python-docx>=0.8.11",
+    "xlrd>=2.0.1",
+    "chardet>=5.0.0",
+
+    # NLP and ML
+    "torch==2.4.1",
+    "torchvision==0.19.1",
+    "torchaudio==2.4.1",
+    "transformers==4.51.3",
+    "sentence-transformers>=3.0.1",
+    "accelerate>=0.20.0",
+    "qwen-vl-utils>=0.0.8",
+
+    # Search and indexing
+    "tqdm>=4.67.1",
+    "jieba>=0.42.1",
+    "tantivy>=0.25.0",
+    "tiktoken>=0.12.0",
+    "bs4>=0.0.2",
+
+    # Graph databases
+    "networkx>=3.5",
+    "igraph>=0.11.0",
+    "neo4j>=5.15.0",
+    "hnswlib>=0.7.0",
+
+    # Relational databases
+    "sqlalchemy>=2.0.43",
+    "psycopg>=3.2.10",
+    "psycopg2-binary>=2.9.0",
+
+    # Cache and messaging
+    "redis>=6.4.0",
+
+    # Authentication
+    "passlib>=1.7.4",
+    "pyjwt>=2.8.0",
+
+    # API clients
+    "openai>=2.2.0",
+    "huggingface-hub>=0.20.0",
+    "websockets>=12.0",
+
+    # System utilities
+    "psutil>=7.1.0",
+
+    # Scientific computing
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "httpx>=0.25.0",
+]
+
+# Optional extras to force a specific FAISS flavor when desired
+cpu = [
+    "faiss-cpu",
+]
+gpu = [
+    "faiss-gpu-cu12; platform_system == 'Linux' and platform_machine == 'x86_64'",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["api*", "core*", "config*", "framework*", "application*", "encapsulation*"]

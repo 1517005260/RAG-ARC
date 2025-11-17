@@ -1,0 +1,12 @@
+{
+    "type": "tantivy_bm25",
+    "index_config": {
+        "type": "bm25_builder",
+        "index_path": "./data/unified_bm25_index"
+    },
+    "search_kwargs": {
+        "k": 5,
+        "with_score": true,
+        "use_phrase_query": false
+    }
+}
